@@ -89,32 +89,36 @@ const BusinessLayout = ({
                     }
                 </div> */}
 
-            <div className={`px-[0px] w-full`}>
+            <div className={`px-[12px] w-full`}>
                 <div className={`max-w-[1100px] w-full mx-auto bg-white`}>
 
 
-                    {
-                        ratingsData &&
-                        <div className={`mt-4 flex gap-2 place-items-center`}>
-                            <RatingBoxSquare rating={Number(ratingsData?.rating_average)} />
-                            <div className={`flex place-items-center place-content-center
+                    <div className=''>
+                        {
+                            ratingsData &&
+                            <div className={`mt-4 flex gap-2 place-items-center`}>
+                                <RatingBoxSquare rating={Number(ratingsData?.rating_average)} />
+                                <div className={`flex place-items-center place-content-center
                                     gap-1 text-black/60 text-[14px]`}>
-                                <div>{formatNumber(Number(ratingsData?.rating_average))}</div>
-                                <div>(<span className='underline'>{formatNumber(ratingsData?.rating_count)} reviews</span>)</div>
+                                    <div>{formatNumber(Number(ratingsData?.rating_average))}</div>
+                                    <div>(<span className='underline'>{formatNumber(ratingsData?.rating_count)} reviews</span>)</div>
+                                </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
 
-                    {
-                        listing && (profileImageData) &&
-                        <Header
-                            listing={listing}
-                            profileImageData={profileImageData}
-                            operatingHoursStatus={operatingHoursStatus}
-                            ratingsData={ratingsData}
-                        />
-                    }
+                    <div className=' '>
+                        {
+                            listing && (profileImageData) &&
+                            <Header
+                                listing={listing}
+                                profileImageData={profileImageData}
+                                operatingHoursStatus={operatingHoursStatus}
+                                ratingsData={ratingsData}
+                            />
+                        }
 
+                    </div>
 
                 </div>
 
