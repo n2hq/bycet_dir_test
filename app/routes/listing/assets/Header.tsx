@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import StarRatingAlt from './StarRatingAlt'
 import { config } from '~/lib/lib'
 import FormattedAddress from './FormattedAddress'
+import Placeholder from '~/components/content/Placeholder'
 
 const Header = ({ listing, profileImageData, operatingHoursStatus, ratingsData }: any) => {
     const [profileImg, setProfileImg] = useState('')
-    const [placeholder, setPlaceholder] = useState('/images/placeholder22.png')
+    const [placeholder, setPlaceholder] = useState('/images/bycetplaceholder.png')
     useEffect(() => {
         if (profileImageData?.image_url) {
 
@@ -23,11 +24,15 @@ const Header = ({ listing, profileImageData, operatingHoursStatus, ratingsData }
             <div className={`flex gap-2  w-full   md:rounded-xl`}>
 
                 <div className={`bg-white w-[60px] min-w-[60px] md:w-[95px] md:min-w-[95px] h-[60px] md:h-[95px] rounded-lg relative overflow-hidden border-[1px]  border-gray-200`}>
-                    <img
-                        src={profileImg}
-                        alt=""
-                        className={` object-cover w-full h-full `}
-                    />
+                    {
+                        listing?.image_url ?
+                            <img
+                                src={profileImg}
+                                alt=""
+                                className={` object-cover w-full h-full `}
+                            /> :
+                            <Placeholder />
+                    }
                 </div>
                 <div className={`w-full block`}>
                     <div className={`text-[19px] md:text-[24px]

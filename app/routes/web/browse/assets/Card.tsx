@@ -14,11 +14,12 @@ import RatingBoxRounded from './RatingBoxRounded'
 import { ListingType } from '~/lib/types'
 import Tooltip from './Tooltip'
 import { NavLink } from '@remix-run/react'
+import Placeholder from '~/components/content/Placeholder'
 
 
 const Card = ({ listing }: any) => {
 
-    const [placeholder, setPlaceholder] = useState('/images/placeholder22.png')
+    const [placeholder, setPlaceholder] = useState('/images/bycetplaceholder.png')
     const [imgscr, setImgsrc] = useState('')
     const [userId, setUserId] = useState('')
     const [socialMedia, setSocialMedia] = useState<any | null>(null)
@@ -160,15 +161,21 @@ const Card = ({ listing }: any) => {
                     <div className={`flex place-content-between gap-2`}>
                         {/** left */}
                         <div className={`flex place-items-start gap-2 w-full`}>
-                            <div className={`max-w-[90px] h-[90px] min-w-[90px]   bg-gray-50 bg-cover bg-center overflow-hidden relative border flex place-items-center place-content-center`}
+                            <div className={`max-w-[85px] h-[90px] min-w-[85px]   bg-gray-50 bg-cover bg-center overflow-hidden relative border flex place-items-center place-content-center rounded`}
 
                             >
-                                <img
-                                    src={imgscr}
-                                    alt={""}
-                                    className={` w-full h-auto text-sm
+                                {
+                                    listing?.image_url !== null ?
+                                        <img
+                                            src={imgscr}
+                                            alt={""}
+                                            className={` w-full h-auto text-sm
                              z-0 bg-gray-100`}
-                                />
+                                        /> :
+                                        <Placeholder />
+
+                                }
+
 
                             </div>
 

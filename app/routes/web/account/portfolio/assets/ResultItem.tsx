@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { BsBank } from 'react-icons/bs'
 import { FiArrowRight } from 'react-icons/fi'
 import { RiDoubleQuotesL } from 'react-icons/ri'
+import Placeholder from '~/components/content/Placeholder'
+import SmallPlaceholder from '~/components/content/SmallPlaceholder'
 import { config } from '~/lib/lib'
 
 const ResultItem = ({ listing, index }: any) => {
-    const [placeholder, setPlaceholder] = useState('/images/placeholder-icon.webp')
+    const [placeholder, setPlaceholder] = useState('/images/bycetplaceholder.png')
     const [imgsrc, setImgsrc] = useState('')
     function isOdd(num: number): boolean {
         return num % 2 !== 0;
@@ -40,13 +42,14 @@ const ResultItem = ({ listing, index }: any) => {
                     style={{ backgroundImage: `url(${placeholder})` }}
                 >
                     {
-                        imgsrc !== null &&
-                        <img
-                            src={imgsrc}
-                            alt={listing.title}
-                            className={`object-cover w-full h-full text-sm bg-white
+                        listing?.image_url !== null ?
+                            <img
+                                src={imgsrc}
+                                alt={listing.title}
+                                className={`object-cover w-full h-full text-sm bg-white
                              `}
-                        />
+                            /> :
+                            <SmallPlaceholder />
                     }
                     {/* <div className={`w-full h-[50%]
                             absolute z-[10] bottom-0 
