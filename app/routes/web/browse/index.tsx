@@ -143,7 +143,15 @@ const Index = () => {
 
                             {/** left */}
                             <div className={`col-span-12 md:col-span-8  pt-3`}>
-
+                                <div className={`mb-12 block xl:hidden`}>
+                                    <div className={`mt-3 text-[17px] mb-4 font-bold ml-6`}>
+                                        Search Filter
+                                    </div>
+                                    <QueryBuilder
+                                        loading={isLoading}
+                                        initialFilters={initialFilters}
+                                    />
+                                </div>
 
 
                                 <div className={`space-y-8`}>
