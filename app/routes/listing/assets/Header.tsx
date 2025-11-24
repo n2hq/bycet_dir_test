@@ -24,7 +24,7 @@ const Header = ({ listing, profileImageData, operatingHoursStatus, ratingsData }
             <div className={`flex gap-3  w-full   md:rounded-xl`}>
 
                 {/** business logo */}
-                <div className={`bg-white w-[60px] min-w-[60px] md:w-[95px] md:min-w-[95px] h-[60px] md:h-[95px] shadow-md relative overflow-hidden border-[1px]  border-gray-200`}>
+                <div className={`bg-white w-[60px] min-w-[60px] md:w-[95px] md:min-w-[95px] h-[60px] md:h-[95px] relative overflow-hidden border-[1px]  border-gray-200`}>
                     {
                         profileImageData?.image_url ?
                             <img
@@ -64,7 +64,7 @@ const Header = ({ listing, profileImageData, operatingHoursStatus, ratingsData }
                                         operatingHoursStatus.openStatus === "selected_hours" ?
                                             <div>
                                                 {operatingHoursStatus.todayHoursFormatted}
-                                                {console.log('here')}
+
                                             </div> :
                                             <div>
                                                 {
