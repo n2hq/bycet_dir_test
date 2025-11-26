@@ -36,8 +36,7 @@ export default defineConfig({
     ], // <-- your domain here
     hmr: {
       port: Number(process.env.VITE_HMR_PORT), // or any other available port
-      path: '/hmr', 
-      clientPort: 443,
+      path: '/hmr'
     },
   },
 });
