@@ -28,7 +28,7 @@ const SigninButton = () => {
             //console.log(userProfile?.image_url)
         }
 
-        if (user?.guid !== null) {
+        if (user?.guid !== null && user?.guid !== undefined) {
 
             getUserImageData(user?.guid)
         }
