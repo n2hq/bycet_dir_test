@@ -5391,7 +5391,7 @@ const loader$_ = async ({ params }) => {
   </url>`;
   const urls = items == null ? void 0 : items.map(
     (item, index2) => `<url>
-        <loc>${baseUrl}/web/${item.category}/${sanitizeWord(item.city)}</loc>
+        <loc>${baseUrl}/web/${sanitizeWord(item.category)}/${sanitizeWord(item.city)}</loc>
         <lastmod>${(/* @__PURE__ */ new Date()).toISOString()}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>

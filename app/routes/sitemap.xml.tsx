@@ -20,7 +20,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
     const urls = items?.map((item: any, index: number) =>
         `<url>
-        <loc>${baseUrl}/web/${item.category}/${sanitizeWord(item.city)}</loc>
+        <loc>${baseUrl}/web/${sanitizeWord(item.category)}/${sanitizeWord(item.city)}</loc>
         <lastmod>${new Date().toISOString()}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
