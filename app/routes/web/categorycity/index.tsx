@@ -1,4 +1,4 @@
-import { LoaderFunction } from '@remix-run/node';
+import { LoaderFunction, LoaderFunctionArgs, MetaFunction } from '@remix-run/node';
 import { Link, useLoaderData } from '@remix-run/react';
 import React, { useEffect } from 'react'
 import Footer from '~/components/footer/Footer';
@@ -48,13 +48,55 @@ export function getSchemaType(categoryId: string) {
 }
 
 
+type ParamsType = {
+    category?: string;
+    city?: string;
+};
+
 export const loader: LoaderFunction = async ({ params }) => {
-    const { category, city } = params;
+
+    const category = params.category
+    const city = params.city
     // Fetch businesses from DB
     const businesses = await getBusinessByCategoryAndCity(category!, city!);
 
 
-    return ({ category, city, businesses });
+    return {
+        category: category,
+        city: city,
+        businesses: businesses
+    };
+};
+
+function toTitleCase(text: string) {
+    return text
+        .toLowerCase()
+        .split(" ")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+}
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+    const category: any = data?.category
+    const city: any = data?.city
+    const businesses: any = data?.businesses
+
+    const formattedCategory = toTitleCase(convertDashToSpace(category))
+    const formattedCity = toTitleCase(convertDashToSpace(city))
+
+    const title = `${formattedCategory} in ${formattedCity} | Bycet Index Directory`;
+    const description = `Find the best ${formattedCategory} businesses in ${formattedCity}. Contact details, operating hours, ratings, and more.`
+
+    return [
+        { title },
+        { name: "description", content: description },
+        { name: "keywords", content: `${category}, ${city}, business directory, ${category} in ${city}` },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: `https://index.bycet.com/web/${category}/${city}` },
+        { property: "og:image", content: "https://index.bycet.com/og-default.jpg" }
+    ];
 };
 
 
