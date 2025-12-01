@@ -23,6 +23,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
                     d.rating_total,
                     d.rating_count,
                     d.rating_average,
+                    d.username,
                     d.gid,
                     d.title,
                     d.address_one,
