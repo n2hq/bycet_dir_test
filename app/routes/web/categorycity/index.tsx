@@ -212,7 +212,7 @@ const index = () => {
                                     businesses?.length > 0 ?
                                         businesses?.map((b: any, index: number) => (
                                             <div className={`group`} key={index}>
-                                                <Link to={`/${b.username ? b.username : b.gid}`}>
+                                                <Link to={`/${b.username !== null && b.username !== '' && b.username !== undefined ? b.username : b.gid}`}>
                                                     <div key={b.id} className="border-b border-blue-200 py-4">
                                                         <h2 className={`text-2xl font-normal text-[#1a0dab] group-hover:underline`}>
 
