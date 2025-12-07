@@ -114,12 +114,28 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
         if (businessIds.length > 0) {
             const ohResult: any = await query(`
-                SELECT business_guid, open_status, no_hours_available, always_open,
-                       permanently_closed, temporarily_closed, open_selected_hours,
-                       monday_from, monday_to, tuesday_from, tuesday_to,
-                       wednesday_from, wednesday_to, thursday_from, thursday_to,
-                       friday_from, friday_to, saturday_from, saturday_to,
-                       sunday_from, sunday_to
+               SELECT 
+                    business_guid,
+                    MAX(open_status) as open_status,
+                    MAX(no_hours_available) as no_hours_available,
+                    MAX(always_open) as always_open,
+                    MAX(permanently_closed) as permanently_closed,
+                    MAX(temporarily_closed) as temporarily_closed,
+                    MAX(open_selected_hours) as open_selected_hours,
+                    MAX(monday_from) as monday_from,
+                    MAX(monday_to) as monday_to,
+                    MAX(tuesday_from) as tuesday_from,
+                    MAX(tuesday_to) as tuesday_to,
+                    MAX(wednesday_from) as wednesday_from,
+                    MAX(wednesday_to) as wednesday_to,
+                    MAX(thursday_from) as thursday_from,
+                    MAX(thursday_to) as thursday_to,
+                    MAX(friday_from) as friday_from,
+                    MAX(friday_to) as friday_to,
+                    MAX(saturday_from) as saturday_from,
+                    MAX(saturday_to) as saturday_to,
+                    MAX(sunday_from) as sunday_from,
+                    MAX(sunday_to) as sunday_to
                 FROM tbl_operating_hours
                 WHERE business_guid IN (?)
                 GROUP BY business_guid
