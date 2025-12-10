@@ -10,6 +10,7 @@ import { MdEmail } from 'react-icons/md'
 import { ListingType } from '~/lib/types'
 import { NavLink } from '@remix-run/react'
 import Placeholder from '~/components/content/Placeholder'
+import RatingBoxSquare from '~/routes/listing/assets/RatingBoxSquare'
 
 
 const Card = ({ listing }: any) => {
@@ -166,7 +167,7 @@ const Card = ({ listing }: any) => {
                                         <img
                                             src={imgscr}
                                             alt={""}
-                                            className={` w-full h-auto text-sm
+                                            className={`object-cover w-full h-full text-sm
                              z-0 bg-gray-100 `}
                                         /> :
                                         <div className={`h-full w-full  md:p-3`}>
@@ -199,11 +200,11 @@ const Card = ({ listing }: any) => {
                                             baseListing?.rating_average !== null && baseListing?.rating_average !== "" &&
                                                 baseListing?.rating_average !== undefined ?
                                                 <div className={` flex gap-2 place-items-center`}>
-                                                    <RatingBoxRounded rating={Number(baseListing?.rating_average)} />
+                                                    <RatingBoxSquare rating={Number(baseListing?.rating_average)} />
                                                     <RatingCount averageRating={baseListing?.rating_average} />
                                                 </div> :
                                                 <div className={` flex gap-2 place-items-center`}>
-                                                    <RatingBoxRounded rating={Number(0)} />
+                                                    <RatingBoxSquare rating={Number(0)} />
                                                     <RatingCount averageRating={0} />
                                                 </div>
                                         }
