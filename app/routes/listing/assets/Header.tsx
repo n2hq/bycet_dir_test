@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import StarRatingAlt from './StarRatingAlt'
-import { config } from '~/lib/lib'
+import { appConfig, config } from '~/lib/lib'
 import FormattedAddress from './FormattedAddress'
 import Placeholder from '~/components/content/Placeholder'
 
@@ -26,19 +26,19 @@ const Header = ({ listing, profileImageData, operatingHoursStatus, ratingsData }
             <div className={`flex gap-3  w-full   md:rounded-xl`}>
 
                 {/** business logo */}
-                <div className={`bg-white w-[60px] min-w-[60px] md:w-[95px] md:min-w-[95px] h-[60px] md:h-[95px] relative border-[1px]  border-gray-100`}>
+                <div className={`bg-white w-[60px] min-w-[60px] md:w-[95px] md:min-w-[95px] h-[60px] md:h-[95px] relative border-[1px]  border-gray-100 rounded-lg overflow-hidden`}>
                     {
                         profileImageData?.image_url ?
                             <img
                                 src={config.IMG_BASE_URL + profileImageData?.image_url}
                                 alt="85x90"
-                                className={` object-cover w-full h-full shadow-xl shadow-gray-300 `}
+                                className={` object-cover w-full h-full  shadow-gray-300 `}
                             /> :
-                            <div className={`h-full w-full p-2 md:p-4 shadow-xl shadow-gray-300`}>
+                            <div className={`h-full w-full  shadow-gray-300 relative`}>
                                 <img
-                                    src={fallbackImg}
+                                    src={appConfig.fallbackImg}
                                     alt=""
-                                    className={`object-scale-down w-full h-full`}
+                                    className={`object-cover w-full h-full`}
                                 />
                             </div>
                     }

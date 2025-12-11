@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import RatingBoxSquare from './RatingBoxSquare'
-import { getListingByCategory } from '~/lib/lib'
+import { appConfig, getListingByCategory } from '~/lib/lib'
 import { Link } from '@remix-run/react'
 
 const dat = [
@@ -74,7 +74,7 @@ const RelatedAlt = ({
                         Related - <span className={` italic capitalize`}>{category}</span>
                     </div>
                 </div>
-                <div className={` grid md:grid-cols-2 lg:grid-cols-3 gap-5`}>
+                <div className={` grid md:grid-cols-2 lg:grid-cols-3 gap-8`}>
                     {
                         listings.map((item, index: number) => {
                             let userId = ''
@@ -90,9 +90,9 @@ const RelatedAlt = ({
                                     <Link to={`/${userId}`}>
                                         <div
                                             key={index}
-                                            className={`flex gap-3 place-items-start border p-3 group hover:cursor-pointer h-full rounded-md`}>
+                                            className={`flex gap-3 place-items-start  group hover:cursor-pointer h-full rounded-md`}>
 
-                                            <div className={`w-[70px] min-w-[70px] h-[70px] relative border`}>
+                                            <div className={`w-[70px] min-w-[70px] h-[70px] relative border rounded-lg overflow-hidden`}>
                                                 {
                                                     item?.image_url !== null ?
                                                         <img
@@ -101,8 +101,9 @@ const RelatedAlt = ({
                                                             alt={cname}
                                                         /> :
                                                         <img
-                                                            src={fallbackImg}
+                                                            src={appConfig.fallbackImg}
                                                             alt={cname}
+                                                            className={`object-cover  w-full h-full text-sm  `}
                                                         />
                                                 }
 

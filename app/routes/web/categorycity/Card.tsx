@@ -5,7 +5,7 @@ import { CgFacebook, CgTwitter, CgWebsite } from 'react-icons/cg'
 import { FaFacebook, FaLinkedinIn, FaYoutubeSquare } from 'react-icons/fa'
 import { GrYoutube } from 'react-icons/gr'
 
-import { config, formatNumber, getCardIcon, searchCategories, searchFacilities, strToList } from '~/lib/lib'
+import { appConfig, config, formatNumber, getCardIcon, searchCategories, searchFacilities, strToList } from '~/lib/lib'
 import { MdEmail } from 'react-icons/md'
 import { ListingType } from '~/lib/types'
 import { NavLink } from '@remix-run/react'
@@ -58,7 +58,7 @@ const Card = ({ listing }: any) => {
                 //console.log(config.IMG_BASE_URL)
                 setImgsrc(config.IMG_BASE_URL + listing?.image_url)
             } else {
-                setImgsrc(placeholder)
+                setImgsrc(appConfig.fallbackImg)
             }
 
             if (listing?.username !== "" && listing?.username !== null && listing?.username !== undefined) {
@@ -170,10 +170,12 @@ const Card = ({ listing }: any) => {
                                             className={`object-cover w-full h-full text-sm
                              z-0 bg-gray-100 `}
                                         /> :
-                                        <div className={`h-full w-full  md:p-3`}>
+                                        <div className={`h-full w-full`}>
                                             <img
-                                                src={fallbackImg}
+                                                src={appConfig.fallbackImg}
                                                 alt=""
+                                                className={`object-cover w-full h-full text-sm
+                             z-0 bg-gray-100 `}
                                             />
                                         </div>
 

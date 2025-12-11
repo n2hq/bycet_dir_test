@@ -22,7 +22,8 @@ export const config = {
 
 export const appConfig = {
     NAVBAR_HEIGHT: 0,
-    searchBaseUrl: '/web/search'
+    searchBaseUrl: '/web/search',
+    fallbackImg: `https://cdn.corporatefinanceinstitute.com/assets/types-of-organizations1.jpeg`
 }
 
 export const getSiteLogo = () => {

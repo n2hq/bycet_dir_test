@@ -7,7 +7,7 @@ import { GrYoutube } from 'react-icons/gr'
 import RatingBox from './RatingBox'
 import RatingText from './RatingText'
 import Address from './Address'
-import { config, getCardIcon, searchCategories, searchFacilities, strToList } from '~/lib/lib'
+import { appConfig, config, getCardIcon, searchCategories, searchFacilities, strToList } from '~/lib/lib'
 import { MdEmail } from 'react-icons/md'
 import { RatingCount } from './RatingCount'
 import RatingBoxRounded from './RatingBoxRounded'
@@ -19,7 +19,8 @@ import RatingBoxSquare from '~/routes/listing/assets/RatingBoxSquare'
 
 
 const Card = ({ listing }: any) => {
-    const fallbackImg = `/images/fallbackBusinessImg.png`
+    //const fallbackImg = `/images/fallbackBusinessImg.png`
+
     const [placeholder, setPlaceholder] = useState('/images/bycetplaceholder.png')
     const [imgscr, setImgsrc] = useState('')
     const [userId, setUserId] = useState('')
@@ -175,10 +176,11 @@ const Card = ({ listing }: any) => {
                                             className={` w-full h-full text-sm
                              z-0 bg-gray-100 object-cover `}
                                         /> :
-                                        <div className={`h-full w-full  md:p-3`}>
+                                        <div className={`relative h-full w-full`}>
                                             <img
-                                                src={fallbackImg}
+                                                src={appConfig.fallbackImg}
                                                 alt=""
+                                                className={`object-cover h-full w-full`}
                                             />
                                         </div>
 

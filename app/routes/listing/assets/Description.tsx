@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { config, getBusinessProfileImageData, searchCategories } from '~/lib/lib'
+import { appConfig, config, getBusinessProfileImageData, searchCategories } from '~/lib/lib'
 import ComponentTitle from './ComponentTitle'
 
 const Description = ({ listing }: any) => {
     const [img, setImg] = useState('')
-    const [placeholder, setPlaceholder] = useState('/images/fallbackBusinessImg.png')
+    const [placeholder, setPlaceholder] = useState(appConfig.fallbackImg)
 
     useEffect(() => {
         if (listing.gid) {
@@ -25,8 +25,8 @@ const Description = ({ listing }: any) => {
             <ComponentTitle title='About this business' />
             <div className={`flex place-items-start place-content-start
                 gap-2 mt-4 mb-3`}>
-                <div className={`rounded-full bg-white w-[30px] h-[30px]
-                    overflow-hidden relative border border-black`}>
+                <div className={`rounded-full bg-white w-[45px] h-[45px]
+                    overflow-hidden relative border`}>
                     <img
                         className={`object-cover w-full h-full`}
                         src={img} alt="" />
