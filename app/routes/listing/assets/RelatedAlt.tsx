@@ -94,6 +94,13 @@ const RelatedAlt = ({
 
                                             <div className={`w-[70px] min-w-[70px] h-[70px] relative border rounded-lg overflow-hidden`}>
                                                 {
+                                                    (item?.image_url === undefined || item?.image_url === null || item?.image_url === '') &&
+                                                    <div className={`absolute bottom-2 h-full w-full flex -gap-y-2 place-content-end place-items-center font-bold z-[10] text-white bg-black/10 text-[6px] tracking-[1px] flex-col`}>
+                                                        <div>AUTOMATIC</div>
+                                                        <div>GENERATED</div>
+                                                    </div>
+                                                }
+                                                {
                                                     item?.image_url !== null ?
                                                         <img
                                                             className={`object-cover  w-full h-full text-sm  `}
