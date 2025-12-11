@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import RatingBoxSquare from './RatingBoxSquare'
-import { appConfig, getListingByCategory } from '~/lib/lib'
+import { appConfig, convertDashToSpace, getListingByCategory } from '~/lib/lib'
 import { Link } from '@remix-run/react'
 
 const dat = [
@@ -71,7 +71,7 @@ const RelatedAlt = ({
             <div className={` max-w-[1200px] mx-auto w-full`}>
                 <div className={`mb-4`}>
                     <div className={`text-2xl font-semibold`}>
-                        Related - <span className={` italic capitalize`}>{category}</span>
+                        Related - <span className={` italic capitalize`}>{convertDashToSpace(category)}</span>
                     </div>
                 </div>
                 <div className={` grid md:grid-cols-2 lg:grid-cols-3 gap-8`}>
