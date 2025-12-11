@@ -139,7 +139,7 @@ export type CategoriesType = {
 const FooterAlt = () => {
     return (
         <div className={`px-[15px] bg-gray-100 pt-[50px] pb-[70px]`}>
-            <div className={`max-w-[1100px] mx-auto w-full`}>
+            <div className={`max-w-[1200px] mx-auto w-full`}>
                 <div className={`w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-y-8 lg:gap-x-4`}>
 
                     {/** first column */}
