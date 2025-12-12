@@ -72,7 +72,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
     return [
       { title: "Bycet - Online Business Directory, Explore Listings Around The World" },
-      { name: "description", content: "Discover and connect with businesses worldwide. Garssete.com helps you explore listings, find services, and grow your network across industries and countries." },
+      { name: "description", content: "Discover and connect with businesses worldwide. Bycet.com helps you explore listings, find services, and grow your network across industries and countries." },
       { name: "keywords", content: "Business Directory Service, Location Services" },
       { property: "fb:app_id", content: "1325393508603168" },
       { property: "og:url", content: "https://bycet.com" },
@@ -82,7 +82,8 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
       { property: "og:image", content: `https://bycet.com/images/bycet.png?v=${randomNo}` },
       { property: "og:image:secure_url", content: `https://bycet.com/images/bycet.png?v=${randomNo}` },
       { property: "og:image:type", content: "image/png" },
-      { property: "og:image:width", content: "200" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { property: "og:image:alt", content: "Bycet" },
       { name: "twitter:creator", content: "bycetinc" },
       { name: "twitter:card", content: "summary_large_image" },
