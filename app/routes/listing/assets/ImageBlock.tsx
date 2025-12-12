@@ -80,12 +80,22 @@ export interface BlockProp {
     showGallery?: (index: number) => void
 }
 export function SingleBlock({ index, imgs, showCarousel }: BlockProp) {
+    const [loaded, setLoaded] = useState(false)
+
+    useEffect(() => {
+        setLoaded(true)
+    }, [])
+
     return (
         <div className={` overflow-hidden bg-gray-200 
                     relative cursor-pointer w-full h-full`}>
-            <div className={`w-full h-[30%] absolute bottom-0 left-0 right-0 bg-gradient-to-b from-transparent to-gray-800`}>
 
-            </div>
+            {
+                loaded &&
+                <div className={`w-full h-[30%] absolute bottom-0 left-0 right-0 bg-gradient-to-b from-transparent to-gray-800`}>
+
+                </div>
+            }
             {
                 imgs[index]?.image_url !== undefined && imgs[index]?.image_url !== null ?
                     <img
