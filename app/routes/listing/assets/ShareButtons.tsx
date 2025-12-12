@@ -13,8 +13,8 @@ const ShareButtons = ({ url, title }: { url: string; title: string }) => {
 
 
     // Standard share URLs
-    const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}?v=${randomNo}`;
-    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedTitle}v=${randomNo}`;
+    const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodedUrl}?v=${randomNo}&text=${encodedTitle}`;
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}?v=${randomNo}&quote=${encodedTitle}`;
 
     return (
         <div className="flex gap-4">
