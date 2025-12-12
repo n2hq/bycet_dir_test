@@ -3,15 +3,18 @@ import { BsLine } from 'react-icons/bs';
 import { CgFacebook } from 'react-icons/cg';
 import { FaDivide } from 'react-icons/fa';
 import { RxDividerVertical } from "react-icons/rx";
+import { generateRandom10DigitNumber } from '~/lib/lib';
 
 const ShareButtons = ({ url, title }: { url: string; title: string }) => {
     // Encode the URL and title for the share links
     const encodedUrl = encodeURIComponent(url);
     const encodedTitle = encodeURIComponent(title);
+    const randomNo = generateRandom10DigitNumber()
+
 
     // Standard share URLs
-    const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
-    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedTitle}`;
+    const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}?v=${randomNo}`;
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedTitle}v=${randomNo}`;
 
     return (
         <div className="flex gap-4">
