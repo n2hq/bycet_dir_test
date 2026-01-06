@@ -103,13 +103,13 @@ const InputNumberOnly = ({
 
                         })}
                         type={controlType ? controlType : 'text'}
-                        className={`${inputClass} ${disabled && 'bg-gray-200/80'}`}
+                        className={`${inputClass} ${disabled && 'bg-gray-200/80'} text-[14px]`}
                         placeholder={controlPlaceholder}
                         disabled={disabled}
                         onLoad={(e: any) => {
                             const value = e.target.value
 
-                            alert(value)
+
 
                             const raw = formatDecimalWithCommas(value)
 

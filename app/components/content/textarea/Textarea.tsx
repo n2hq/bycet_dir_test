@@ -21,7 +21,7 @@ const Textarea = ({
                         {...register(controlName, {
                             onChange: changeHandler
                         })}
-                        className={textAreaClass}
+                        className={`${textAreaClass} text-[14px]`}
                         placeholder={controlPlaceholder}
                     />
                     {

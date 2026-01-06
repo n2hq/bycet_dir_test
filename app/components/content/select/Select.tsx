@@ -49,7 +49,7 @@ const Select = ({
                                     }
                                 }
                             })}
-                            className={inputClass}
+                            className={`${inputClass} text-[14px]`}
 
                         >
                             <option value="">{controlPlaceholder}</option>
@@ -57,7 +57,7 @@ const Select = ({
                                 selectJson?.map((item: any, id: any) => {
                                     return (
                                         <option key={id} value={item.id}
-                                            className={`text-xl`}
+                                            className={``}
                                         >
                                             {item.name}
                                         </option>

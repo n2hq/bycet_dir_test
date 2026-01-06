@@ -150,6 +150,7 @@ export type ListingType = {
     rating_count: any
     minimum_amount: any
     minimum_amount_currency_code: any
+    starting_note: any
     avg_rating: any
     count_of_rating: any
     currency: any

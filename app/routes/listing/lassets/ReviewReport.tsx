@@ -11,35 +11,35 @@ import { RxValue, RxValueNone } from 'react-icons/rx'
 import { ListingType } from '~/lib/types'
 import { BusinessRatingSummary } from '~/routes/api/rating/rate_business'
 
-const reviewRept = [
+let reviewRept = [
     {
         title: "Cleanliness",
-        score: "5.0",
+        score: 0,
         icon: <GiVacuumCleaner />
     },
     {
         title: "Accuracy",
-        score: "5.0",
+        score: 0,
         icon: <FaGoodreadsG />
     },
     {
         title: "Check-in",
-        score: "5.0",
+        score: 0,
         icon: <BiKey />
     },
     {
         title: "Communication",
-        score: "5.0",
+        score: 0,
         icon: <BiChat />
     },
     {
         title: "Location",
-        score: "5.0",
+        score: 0,
         icon: <LuMapPinPlus />
     },
     {
         title: "Value",
-        score: "5.0",
+        score: 0,
         icon: <BiHotel />
     },
 ]
@@ -98,19 +98,20 @@ const ReviewReport = ({ businessRating, listing }: ReviewReportProps) => {
             console.log(businessRating)
         }
     }, [businessRating])
+    const [rpt, setRpt] = useState<ReviewReportType[]>(reviewReport)
 
     useEffect(() => {
         if (ratingReport) {
             console.log(ratingReport)
             let rpt: ReviewReportType[] = reviewReport
 
-            rpt[0].score = ratingReport?.avg_rating?.toString()
+            rpt[0].score = ratingReport?.avg_rating?.toString() || ""
             rpt[1].score = ratingReport?.avg_quality?.toString()
             rpt[2].score = ratingReport?.avg_customer_service?.toString()
             rpt[3].score = ratingReport?.avg_communication?.toString()
             rpt[4].score = ratingReport?.avg_value?.toString()
             rpt[5].score = ratingReport?.avg_overall_satisfaction?.toString()
-
+            setRpt(rpt)
             console.log(reviewReport)
 
         }
@@ -140,7 +141,7 @@ const ReviewReport = ({ businessRating, listing }: ReviewReportProps) => {
                 <div className={`max-w-[1100px] mx-auto w-full`}>
                     <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 place-content-between `}>
                         {
-                            reviewReport?.map((item, i: number) => {
+                            rpt?.map((item, i: number) => {
                                 return (
                                     <div
                                         key={i}
@@ -158,8 +159,8 @@ const ReviewReport = ({ businessRating, listing }: ReviewReportProps) => {
 
                                             <div className={` ${ratingReport ? 'text-[16px]' : 'text-[13px]'} `}>
                                                 {
-                                                    ratingReport ?
-                                                        item.score :
+                                                    (Number(item?.score) !== 0) ?
+                                                        item?.score :
                                                         'No Rating'
                                                 }
                                             </div>

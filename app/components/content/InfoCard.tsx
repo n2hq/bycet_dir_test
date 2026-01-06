@@ -82,7 +82,7 @@ const InfoCard = ({ item, isFirst = false }: { item: ListingType, isFirst?: bool
     }, [data])
     return (
         <div>
-            <Link to={`${(item?.username !== null && item?.username !== '' && item?.username !== undefined) ? `/${item?.username}` : `/${item?.gid}`}`}>
+            <a href={`${(item?.username !== null && item?.username !== '' && item?.username !== undefined) ? `/${item?.username}` : `/${item?.gid}`}`}>
                 <div className={`flex py-4 border-b border-gray-200/80 cursor-pointer hover:opacity-80 transition duration-200 ease-out group ${isFirst ? 'border-t' : ''} group`}>
                     <div className={`relative h-48 min-w-40 w-40 md:h-52 md:w-52 md:min-w-52 flex-shrink-0 rounded-3xl overflow-hidden shadow-md group-hover:shadow-lg group-hover:shadow-gray-300 border group-hover:border-none`}>
 
@@ -153,7 +153,7 @@ const InfoCard = ({ item, isFirst = false }: { item: ListingType, isFirst?: bool
                         </div>
                     </div>
                 </div>
-            </Link>
+            </a>
         </div>
     )
 }

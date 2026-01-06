@@ -400,6 +400,7 @@ const BusinessProfile = ({ data }: any) => {
                                     changeHandler={changeHandler}
                                     error={errors.minimum_amount_currency_code}
                                     setCode={resetStates}
+                                    setValue={setValue}
                                     controlInformation={`Default currency to receive funds.`}
                                 />
 
@@ -415,6 +416,21 @@ const BusinessProfile = ({ data }: any) => {
                                     controlInformation={`Enter the starting amount charged by this business`}
                                 />
 
+                                <div className={`h-2`}></div>
+
+                                <TextareaWithWordLimit
+                                    controlTitle={"Short Note"}
+                                    controlPlaceholder={"Short note on offerings."}
+                                    controlName={"starting_note"}
+                                    register={register}
+                                    changeHandler={changeHandler}
+                                    error={errors.starting_note}
+                                    setValue={setValue}
+                                    getValues={getValues}
+                                    watch={watch}
+                                    controlInformationClass={controlInformationClass}
+                                    controlInformation={`Short note on services offered and minimum amount offered. Promos also comes here.`}
+                                />
                             </div>
                         </div>
 

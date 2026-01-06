@@ -40,6 +40,7 @@ import { BusinessRatingSummary } from '../api/rating/rate_business'
 import { useShareDialogContext } from '~/context/ShareDialogContext'
 import { ReadMoreAboutProvider } from '~/context/ReadMoreAboutContext'
 import { ReadMoreWithUrlProvider } from '~/context/ReadMoreWithUrlContext'
+import StartingAmount from './lassets/StartingAmount'
 
 
 export const loader: LoaderFunction = async ({ request, params }) => {
@@ -221,6 +222,8 @@ const listing = () => {
                                     <ReadMoreAboutProvider>
                                         <About listing={listing} />
                                     </ReadMoreAboutProvider>
+
+                                    <StartingAmount listing={listing} />
 
                                     <div className={`block lg:hidden mb-12`}>
                                         <WorkingHours listing={listing}

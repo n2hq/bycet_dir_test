@@ -47,7 +47,7 @@ const Input = ({
                             onChange: changeHandler
                         })}
                         type={controlType ? controlType : 'text'}
-                        className={`${inputClass} ${disabled && 'bg-gray-200/80'}`}
+                        className={`${inputClass} ${disabled && 'bg-gray-200/80'} text-[14px]`}
                         placeholder={controlPlaceholder}
                         disabled={disabled}
                     />

@@ -1,6 +1,6 @@
 import { ActionFunctionArgs, LoaderFunction } from "@remix-run/node"
 import { query } from "../DB"
-import { DoResponse } from "~/lib/lib"
+import { DoResponse, removeCommas } from "~/lib/lib"
 import { ListingType } from "~/lib/types"
 import { pageType } from "~/lib/json/page_type"
 
@@ -108,7 +108,15 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
 
             let minimum_amount_currency_code = body.minimum_amount_currency_code as string === undefined ? listing.minimum_amount_currency_code : body.minimum_amount_currency_code
 
+
+            let currency = body.currency as string === undefined ? listing.currency : body.currency
+
+            let starting_note = body.starting_note as string === undefined ? listing.starting_note : body.starting_note
+
             let minimum_amount = body.minimum_amount as string === undefined ? listing.minimum_amount : body.minimum_amount
+            minimum_amount = removeCommas(minimum_amount)
+
+
 
             {/** check if username has not been taken */ }
             if (username !== "" && username !== null) {
@@ -167,6 +175,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
 
             //console.log(sql)
             //return DoResponse(sql, 200)
+            //minimum_amount = 40
 
             const result = await query(
                 `UPDATE tbl_dir SET
@@ -197,7 +206,9 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
                 city_id = ?,
                 website = ?,
                 minimum_amount_currency_code = ?,
-                minimum_amount = ? 
+                minimum_amount = ?,
+                currency = ?,
+                starting_note = ?  
                 WHERE
                 gid = ?`,
                 [
@@ -229,6 +240,8 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
                     website,
                     minimum_amount_currency_code,
                     minimum_amount,
+                    currency,
+                    starting_note,
                     guid
                 ])
 

@@ -1,7 +1,41 @@
+import { json } from '@remix-run/react';
 import React, { useEffect, useState } from 'react'
 import { MdError } from 'react-icons/md'
 import { controlInformationClass, inputClass, inputControlWrapper, inputHeadingClass } from '~/lib/css'
 import { Currency } from '~/lib/types'
+
+export const toTitleCase = (phrase: string): string => {
+    if (!phrase || phrase.trim() === '') return '';
+
+    return phrase
+        .toLowerCase()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+};
+
+// Example: "United Arab Emirates Dirham"
+
+const findCurrencyById = (id: number, currencies: Currency[]): Currency | undefined => {
+    const currencyArray = Object.values(currencies);
+    const index: number = (id - 1)
+
+
+    if (index < 0 || index >= currencyArray.length) {
+        console.warn(`Country ID ${id} out of range. Array length: ${currencyArray.length}`);
+        return undefined;
+    }
+
+    const foundCurrency: Currency = currencyArray[index]
+    console.log(foundCurrency.id)
+    console.log(index)
+
+    if (foundCurrency && foundCurrency.id === index + 1) {
+        return foundCurrency;
+    } else {
+        return currencies[0]
+    }
+};
 
 const SelectCurrency = ({
     controlName,
@@ -12,6 +46,7 @@ const SelectCurrency = ({
     changeHandler,
     error,
     setCode,
+    setValue,
     controlInformation
 }: any) => {
     const [ready, setReady] = useState(false)
@@ -45,8 +80,10 @@ const SelectCurrency = ({
                             {...register(controlName, {
                                 onChange: (e: any) => {
                                     changeHandler(e)
-                                    if (setCode) {
-                                        setCode(e.target.value)
+                                    if (setValue) {
+                                        const currency: Currency | undefined = findCurrencyById(e.target.value, selectJson)
+
+                                        setValue("currency", currency?.currency_symbol)
                                     }
                                 }
                             })}
@@ -57,8 +94,10 @@ const SelectCurrency = ({
                             {
                                 selectJson.map((item: Currency, id: any) => {
                                     return (
-                                        <option key={id} value={item.id} className={``}>
-                                            {item.country} - {item.currency_name} {item.currency_symbol} {item.emoji}
+                                        <option
+                                            key={id} value={item.id}
+                                            className={` capitalize`}>
+                                            {item.country} - {toTitleCase(item.currency_name)} {item.currency_symbol} {item.emoji}
                                         </option>
                                     )
                                 })

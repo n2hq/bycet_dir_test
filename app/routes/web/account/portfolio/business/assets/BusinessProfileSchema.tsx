@@ -96,7 +96,8 @@ const BusinessProfileSchema = z.object({
         ),
     minimum_amount_currency_code: z.any(),
     minimum_amount: z.any(),
-
+    currency: z.any(),
+    starting_note: z.any(),
     intro: z.any(),
     category: z.string()
         .min(2, { message: "Please select a business category" }),

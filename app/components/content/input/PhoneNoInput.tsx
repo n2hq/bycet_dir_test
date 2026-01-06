@@ -314,7 +314,7 @@ const PhoneNoInput = ({
     useEffect(() => {
         if (getValues) {
             const phone = getValues(controlName);
-            console.log(phone)
+            //console.log(phone)
             // Only process if there's a phone number
             if (phone) {
                 const result = separatePhoneNumber(phone);
@@ -327,9 +327,9 @@ const PhoneNoInput = ({
                 if (dialCode) {
                     // Find exact match first, then partial match
                     const countryFromDialCode = COUNTRY_DATA.find(country =>
-                        country.dialCode === dialCode
+                        country.code === dialCode
                     ) || COUNTRY_DATA.find(country =>
-                        dialCode.startsWith(country.dialCode)
+                        dialCode.startsWith(country.code)
                     );
 
                     if (countryFromDialCode) {
@@ -455,7 +455,7 @@ const PhoneNoInput = ({
             setDisplayValue(formattedLocal);
 
             // Combine country code + local number for storage
-            const fullNumber = country.dialCode + "-" + digitsOnly;
+            const fullNumber = country.code + "-" + digitsOnly;
             console.log(fullNumber)
 
             // Create synthetic event for form handler
@@ -489,7 +489,7 @@ const PhoneNoInput = ({
         setDisplayValue(formattedLocal);
 
         // Combine country code + local number for storage
-        const fullNumber = selectedCountry.dialCode + "-" + digitsOnly;
+        const fullNumber = selectedCountry.code + "-" + digitsOnly;
 
         // Create synthetic event for form handler
         setValue(controlName, fullNumber, {
@@ -526,7 +526,7 @@ const PhoneNoInput = ({
         setDisplayValue(formatted);
 
         // Update form with full number
-        const fullNumber = countryFromPaste.dialCode + "-" + cleanLocal;
+        const fullNumber = countryFromPaste.code + "-" + cleanLocal;
 
         setValue(controlName, fullNumber, {
             shouldDirty: true,
@@ -555,7 +555,7 @@ const PhoneNoInput = ({
             </div>
 
             <div className="w-[100%]">
-                <div className="flex items-stretch rounded-md border border-gray-300 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
+                <div className="flex items-stretch rounded-full pl-4 pr-2 py-2 border border-gray-300 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
                     {/* Country Code Selector */}
                     {showCountrySelector && (
                         <div className="relative" ref={dropdownRef}>
@@ -619,7 +619,7 @@ const PhoneNoInput = ({
                     )}
 
                     {/* Phone Number Input */}
-                    <div className="flex relative place-items-center place-content-center">
+                    <div className="flex relative place-items-center place-content-center grow ">
                         {showCountrySelector && (
                             <div className="absolute left-3 text-gray-500 pointer-events-none h-full  flex place-items-center font-bold">
                                 {selectedCountry.dialCode}
@@ -631,7 +631,7 @@ const PhoneNoInput = ({
                             })}
                             ref={inputRef}
                             type={controlType}
-                            className={`${inputClass} border-0 focus:ring-0 pl-12 ml-3 ${disabled && 'bg-gray-200/80'} outline-none`}
+                            className={`  focus:ring-0 w-full h-full pl-12 ml-3 ${disabled && 'bg-gray-200/80'} outline-none text-[14px] bg-transparent  `}
                             placeholder={controlPlaceholder}
                             disabled={disabled}
                             value={displayValue}

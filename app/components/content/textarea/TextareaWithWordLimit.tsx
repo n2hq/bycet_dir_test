@@ -85,7 +85,7 @@ const TextareaWithWordLimit = ({
                                 changeHandler(e)
                             }
                         })}
-                        className={textAreaClass}
+                        className={`${textAreaClass} text-[14px]`}
                         placeholder={controlPlaceholder}
                         onKeyDown={handleKeyDown}
                     />
