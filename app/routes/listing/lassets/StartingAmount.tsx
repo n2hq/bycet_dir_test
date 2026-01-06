@@ -40,7 +40,7 @@ const StartingAmount = ({ listing }: AboutProps) => {
         <div className={` border-t py-10`}>
 
             {/** about title */}
-            <div className={`text-[22px] md:text-[25px] font-bold`}>
+            <div className={`text-[22px] md:text-[25px] font-semibold`}>
                 Starting Amount
             </div>
 
@@ -50,15 +50,18 @@ const StartingAmount = ({ listing }: AboutProps) => {
 
             {/** about description */}
 
-            <div className={`mt-6 flex gap-12`}>
-                <div>
-                    {listing?.starting_note}
-                </div>
-                <div className={`text-4xl`}>
+            {
+                (listing?.starting_note && listing?.currency) &&
+                <div className={`mt-6 flex gap-12`}>
+                    <div>
+                        {listing?.starting_note}
+                    </div>
+                    <div className={`text-4xl`}>
 
-                    {listing?.currency}{formatNumber(Number(listing?.minimum_amount || 0))}
+                        {listing?.currency}{formatNumber(Number(listing?.minimum_amount || 0))}
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     )
 }
