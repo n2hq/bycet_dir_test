@@ -3,7 +3,7 @@ import { useAuth } from '~/context/AuthContext'
 import { ReviewType, useWriteReviewAltContext } from '~/context/WriteReviewAltContext'
 import { useWriteReviewContext } from '~/context/WriteReviewContext'
 import { ListingType, RatingsDataType } from '~/lib/types'
-import RatingBoxInfoCard from '~/routes/web/srch/assets/RatingBoxInfoCard'
+
 
 interface ReviewProps {
     listing: ListingType

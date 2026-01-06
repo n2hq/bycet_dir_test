@@ -275,7 +275,7 @@ export const ShareDialogProvider = ({ children }: any) => {
                     >
                         <CloseButton setShow={setShow} />
                         <div className={`mx-3 w-full`}>
-                            <div className={`max-w-[560px] mx-auto w-full bg-white h-fit rounded-[40px] px-[24px] py-16 relative`}
+                            <div className={`max-w-[560px] mx-auto w-full bg-white h-fit rounded-[40px] px-[24px] pt-12 pb-16 relative`}
                                 onClick={(e) => e.stopPropagation()}
                             >
                                 <div className={`absolute top-8 right-8 text-3xl border-[2px] rounded-xl border-gray-500/20 w-[40px] h-[40px] shadow-sm flex place-items-center place-content-center text-gray-500 cursor-pointer hover:bg-gray-100 hover:border-gray-200/50`}
@@ -343,8 +343,8 @@ export const ShareDialogProvider = ({ children }: any) => {
                                     }
                                 </div>
 
-                                <div className={`mt-6 text-[14px]`}>
-                                    <b>Description: </b>{listing?.short_description}
+                                <div className={`mt-8 text-[12px] line-clamp-3`}>
+                                    <b>Description: </b>{removeAllParagraphs(listing?.short_description || '')}
                                 </div>
                             </div>
                         </div>

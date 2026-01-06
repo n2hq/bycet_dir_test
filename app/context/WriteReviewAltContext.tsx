@@ -5,6 +5,8 @@ import { z } from 'zod';
 import { useForm } from "react-hook-form";
 import { ListingType } from "~/lib/types";
 import { useAuth } from "./AuthContext";
+import { useOperation } from "./OperationContext";
+import { config, headers } from "~/lib/lib";
 
 const WriteReviewAltContext = createContext<any | null>(null)
 export default WriteReviewAltContext
@@ -93,9 +95,9 @@ export const ReviewSchema = z.object({
         .min(1, 'Please enter title'),
     experience: z.string({ message: 'Please enter experience' })
         .min(1, 'Please write your experience'),
-    avgRating: z.any(),
-    businessGuid: z.any(),
-    userGuid: z.any()
+    avg_rating: z.any(),
+    business_guid: z.any(),
+    user_guid: z.any()
 })
 
 type FormData = z.infer<typeof ReviewSchema>;
@@ -106,7 +108,7 @@ interface WriteReviewAltProps {
 export const WriteReivewAltForm = ({ listing }: WriteReviewAltProps) => {
     const STORAGE_KEY = 'REVIEW_FORM_DATA';
     const auth = useAuth()
-
+    const [working, setWorking] = useState(false)
 
     const initVals: FormData = {
         'title': '',
@@ -116,9 +118,9 @@ export const WriteReivewAltForm = ({ listing }: WriteReviewAltProps) => {
         'communication': '',
         'value': '',
         'overall_satisfaction': '',
-        'avgRating': '',
-        'businessGuid': '',
-        'userGuid': ''
+        'avg_rating': '',
+        'business_guid': '',
+        'user_guid': ''
     };
 
     const getStoredData = (): FormData => {
@@ -149,8 +151,11 @@ export const WriteReivewAltForm = ({ listing }: WriteReviewAltProps) => {
         reset(initVals); // Reset to initial values
     };
 
-    const doSubmit = async (data: FormData) => {
+    const { showOperation, showSuccess, showError, showWarning, showInfo, completeOperation } = useOperation();
 
+    const doSubmit = async (data: FormData) => {
+        showOperation('processing', 'Submitting review...')
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         const {
             quality,
             customer_service,
@@ -165,11 +170,46 @@ export const WriteReivewAltForm = ({ listing }: WriteReviewAltProps) => {
             parseInt(value) +
             parseInt(overall_satisfaction)) / 5
 
-        data.avgRating = avgRating
-        data.businessGuid = listing?.gid
-        data.userGuid = auth?.user.guid
+        data.avg_rating = avgRating
+        data.business_guid = listing?.gid
+        data.user_guid = auth?.user.guid
 
         console.log('Submitting:', data);
+
+        const endpoint = "/api/rating/rate_business"
+        const url = config.BASE_URL + endpoint
+
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(data)
+            })
+
+            if (!response.ok) {
+                const errorData = await response.text();
+                const errorObject = JSON.parse(errorData)
+                throw new Error(`${errorObject.error}`);
+
+            } else {
+
+                showSuccess('Success', 'Service added successfully.')
+
+
+                await new Promise((resolve) => setTimeout(resolve, 2000));
+                showOperation('processing', 'Reloading...')
+                await new Promise((resolve) => setTimeout(resolve, 3000));
+                window.location.reload()
+                await new Promise((resolve) => setTimeout(resolve, 3000));
+                completeOperation()
+            }
+
+        } catch (error: any) {
+            showError('error', `${error.message}`)
+            completeOperation()
+        } finally {
+            setWorking(false)
+        }
 
         try {
             // Simulate API call
