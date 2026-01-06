@@ -40,19 +40,17 @@ const StartingAmount = ({ listing }: AboutProps) => {
 
     useEffect(() => {
         if (listing) {
-            if (listing?.starting_note && listing?.minimum_amount) {
-                let str = <div>
-                    <div className={`text-3xl font-semibold`}>
-                        {listing?.currency}{formatNumber(Number(listing?.minimum_amount))}
-                    </div>
-                    <div className={`text-lg mt-6`}>
-                        {listing?.starting_note}
-                    </div>
-
+            let str = <div>
+                <div className={`text-3xl font-semibold`}>
+                    {listing?.currency}{formatNumber(Number(listing?.minimum_amount))}
+                </div>
+                <div className={`text-lg mt-6`}>
+                    {listing?.starting_note}
                 </div>
 
-                setStarting(str)
-            }
+            </div>
+
+            setStarting(str)
 
         }
     }, [listing])
