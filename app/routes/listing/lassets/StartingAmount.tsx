@@ -43,6 +43,9 @@ const StartingAmount = ({ listing }: AboutProps) => {
             <div className={`text-[22px] md:text-[25px] font-semibold`}>
                 Starting Amount
             </div>
+            <div className={`text-sm`}>
+                Promos, Special Offers, Seasonal Offers and more.
+            </div>
 
 
 
