@@ -1,0 +1,1 @@
+import{j as e}from"./jsx-runtime-0DLF9kdB.js";import{H as r}from"./HeaderLogo-Bt70dA6Q.js";const t=()=>e.jsx("div",{className:"w-full px-[15px] py-3 fixed top-0 left-0",children:e.jsx(r,{})});export{t as A};
